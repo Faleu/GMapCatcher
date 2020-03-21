@@ -11,6 +11,21 @@ from gmapcatcher.mapConst import *
 class WidMapServers():
 
     ## Appends items to a list from the given file
+    #def load(self, button, listStore):
+    #    listStore.clear()
+    #    bad_map_servers = self.conf.hide_map_servers.split(',')
+    #    pref_map_servers = self.conf.order_map_servers.split(',')
+    #    # add rows with text
+    #    unusedOrderPos = len(pref_map_servers)
+    #    for intPos in range(len(MAP_SERVERS)):
+    #        intOrder = intPos + len(pref_map_servers) - unusedOrderPos
+    #        for intOrderPos in range(len(pref_map_servers)):
+    #            if intPos == int( pref_map_servers[ intOrderPos]):
+    #                intOrder = intOrderPos
+    #                unusedOrderPos = unusedOrderPos - 1
+    #        listStore.append([ intOrder, MAP_SERVERS[intPos], int(not str(intPos) in bad_map_servers)])
+    #    listStore.set_sort_column_id(0, gtk.SORT_ASCENDING)
+    #    return listStore
     def load(self, button, listStore):
         listStore.clear()
         bad_map_servers = self.conf.hide_map_servers.split(',')

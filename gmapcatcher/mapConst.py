@@ -6,7 +6,7 @@ import os
 import locale
 
 NAME = "GMapCatcher"
-VERSION = "0.8.0.9"
+VERSION = "0.8.0.10"
 VERSION_NAME = ""
 WEB_ADDRESS = "https://github.com/heldersepu/GMapCatcher"
 
@@ -32,6 +32,8 @@ SKYVECTOR_WORLD_VFR = 18
 SKYVECTOR_WORLD_LO = 19
 SKYVECTOR_WORLD_HI = 20
 MAPS_FOR_FREE = 21
+OSM_DE = 22
+OSM_FR = 23
 
 MAP_SERVERS = [
     "Google", "OpenStreetMap", "CloudMade", "Yahoo",
@@ -39,8 +41,8 @@ MAP_SERVERS = [
     "Virtual Earth", "Yandex",
     "Seznam", "Seznam Turistická", "Seznam Cyklo", "Seznam Historická",
     "Stamen", "Refuges Europe", "OpenSeaMap", "Eniro", "Nokia",
-    "SkyVector World VFR", "SkyVector World Lo", "SkyVector World Hi",
-    "Maps-For-Free"
+    "SkyVector World VFR", "SkyVector World Lo", "SkyVector World Hi", 
+    "Maps-For-Free", "OSM_De", "OSM_Fr"
 ]
 
 LAYER_MAP = 0
@@ -75,6 +77,8 @@ MAP_SERVICES = [
     {"ID": SKYVECTOR_WORLD_LO,   "layers": [LAYER_MAP]},
     {"ID": SKYVECTOR_WORLD_HI,   "layers": [LAYER_MAP]},
     {"ID": MAPS_FOR_FREE, "layers": [LAYER_TER, LAYER_HYB]},
+    {"ID": OSM_DE,        "layers": [LAYER_MAP]},
+    {"ID": OSM_FR,        "layers": [LAYER_MAP]}
 ]
 
 NO_BULK_DOWN = ["Google", "OpenStreetMap", "OpenCycleMap"]

@@ -1317,7 +1317,15 @@ class MainWindow(gtk.Window):
 
 
 def main(conf_path):
-    # gobject.threads_init()
+    sys.stdout = open('maps_LogConfig.log', 'w')
+    import logging
+    import logging.config
+
+    logConfigFile = os.path.join( DEFAULT_PATH, 'logging.conf')
+
+    print( "logging configuration filename=" + str( logConfigFile))
+    logging.config.fileConfig( logConfigFile)
+    logging.info('Start program')
     gtk.gdk.threads_init()
     MainWindow(config_path=conf_path)
 

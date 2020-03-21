@@ -1,6 +1,16 @@
 :: Create an executable using py2exe then
 :: Make the installer using NSIS
 
+:: Prerequisites:
+:: Python 2.7 must be installed in %SystemDrive%\PYTHON27
+:: PyGTK all-in-one must be installed
+:: Py2exe for Python 2.7 must be installed
+:: NSIS installation builder must be installed in %SystemDrive%\Program Files (x86)\NSIS
+:: Plugin AccessControl.dll for NSIS must be placed into %ProgramFiles%\NSIS\Plugins\x86-ansi
+::
+:: %SystemDrive% is usually C:
+:: %ProgramFiles% is usually C:\Program Files (x86)
+
 :: Tested with:
 ::  python-2.7.msi
 ::  gtk2-runtime-2.22.0-2010-10-21-ash.exe
@@ -13,6 +23,17 @@
 ::  nsis-2.46-setup.exe
 ::  AccessControl.zip
 
+:: Check version
+@for /f "tokens=3" %%f in ('find "VERSION = " ..\gmapcatcher\mapConst.py') do @set PrVersion=%%f 
+@for /f "tokens=3" %%f in ('find "!define PRODUCT_VERSION" setup.nsi') do @set InstVersion=%%f 
+@IF NOT %PrVersion% == %InstVersion% (
+    @ECHO PrVersion=%PrVersion%
+    @ECHO InstVersion=%InstVersion%
+    @ECHO Version mismatch!
+    @GOTO EndError
+)
+
+SET PrVersion = ..\gmapcatcher\mapConst.py
 
 @COLOR 02
 :: clean up before starting
@@ -33,7 +54,7 @@
 :: Launch the PYTHON setup
 @COPY installer\setup.* .
 %SystemDrive%\PYTHON27\PYTHON.EXE setup.py py2exe
-
+@IF NOT %ERRORLEVEL% == 0 GOTO EndError
 :: Few seconds delay to show dependencies
 @COLOR F0
 @ECHO.
@@ -66,5 +87,12 @@ CALL %NSIS% setup.nsi
 @ECHO.
 @COLOR 0A
 @MOVE *.exe installer
+@GOTO End
+
+:EndError
+@COLOR C
+@ECHO Fatal error.
+
+:End
 @ECHO.
 @PAUSE

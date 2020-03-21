@@ -53,6 +53,7 @@ class MapConf():
         config.set(SECTION_INIT, 'save_height', self.save_height)
         config.set(SECTION_INIT, 'match_func', self.match_func)
         config.set(SECTION_INIT, 'hide_map_servers', self.hide_map_servers)
+        config.set(SECTION_INIT, 'order_map_servers', self.order_map_servers)
         config.set(SECTION_INIT, 'units', self.units)
         config.set(SECTION_INIT, 'start_offline', self.start_offline)
         config.set(SECTION_INIT, 'limited', self.limited)
@@ -150,6 +151,8 @@ class MapConf():
         self.match_func = read_config('match_func', ENTRY_SUB_MENU[0], str)
         ## List of map servers to hide
         self.hide_map_servers = read_config('hide_map_servers', '0,3,16,18,19,20', str)
+        ## List of map servers order
+        self.order_map_servers = read_config('order_map_servers', 'OpenStreetMap,OSM_De,OSM_Fr', str)
         ## Speed and distance units (default km / km/h)
         self.units = read_config('units', 0, int)
         ## Start offline (default = Yes)
@@ -196,7 +199,7 @@ class MapConf():
         self.opacity = read_config('opacity', 0.0, float, SECTION_MAP)
         ## Initial map opacity
         self.draw_track_start_end = read_config('draw_track_start_end', 0, int, SECTION_MAP)
-		## Ruler-track width, default is 3px
+        ## Ruler-track width, default is 3px
         self.ruler_track_width = read_config('ruler_track_width', 3, int, SECTION_MAP)
 
         ## How often is the GPS updated, default is 1 second

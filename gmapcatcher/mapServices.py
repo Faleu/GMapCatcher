@@ -75,6 +75,10 @@ class MapServ:
             import mapServers.virtualEarth as map_server
         elif map_service == MAP_SERVERS[OSM]:
             import mapServers.openStreetMaps as map_server
+        elif map_service == MAP_SERVERS[OSM_DE]:
+            import mapServers.openStreetMapsDe as map_server
+        elif map_service == MAP_SERVERS[OSM_FR]:
+            import mapServers.openStreetMapsFr as map_server
         elif map_service == MAP_SERVERS[STAMEN]:
             import mapServers.stamenMaps as map_server
         elif map_service == MAP_SERVERS[REFUGES]:
